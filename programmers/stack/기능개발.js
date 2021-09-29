@@ -1,0 +1,45 @@
+// https://programmers.co.kr/learn/courses/30/lessons/42586?language=javascript
+
+function solution(progresses, speeds) {
+    let answer = [0];
+    let days = progresses.map((progress, index) => Math.ceil((100 - progress) / speeds[index]));
+    let maxDay = days[0];
+
+    for (let i = 0, j = 0; i < days.length; i++) {
+        if (days[i] <= maxDay) {
+            answer[j] += 1;
+        } else {
+            maxDay = days[i];
+            answer[++j] = 1;
+        }
+    }
+
+    return answer;
+}
+
+
+// function solution(progresses, speeds) {
+//     const answer = [];
+//     while (progresses.length !== 0) {
+//         for (let i = 0; i < progresses.length; i++) {
+//             progresses[i] += speeds[i];
+//         }
+//         if (progresses[0] >= 100) {
+//             let count = 0;
+//             for (let i = 0; i < progresses.length; i++) {
+//                 if (progresses[i] >= 100) {
+//                     count++;
+//                 } else {
+//                     break;
+//                 }
+//             }
+//             answer.push(count);
+//             while (count !== 0) {
+//                 progresses.shift();
+//                 speeds.shift();
+//                 count--;
+//             }
+//         }
+//     }
+//     return answer;
+// }
